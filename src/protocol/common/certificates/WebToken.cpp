@@ -1,6 +1,5 @@
 #include "protocol/common/certificates/WebToken.h"
 #include "protocol/common/utility/Base64.h"
-#include "json/value.h"
 
 namespace protocol {
 WebToken::WebToken(std::string token) {

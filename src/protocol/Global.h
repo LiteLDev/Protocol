@@ -55,7 +55,8 @@
 #include <variant>       // STL variant type
 #include <vector>        // STL dynamic array container
 
-#include "json/json.h"
+#include "deps/jsoncpp/json.h"
+#include "deps/magic_enum/magic_enum.hpp"
 
 namespace protocol {
 namespace Bedrock {

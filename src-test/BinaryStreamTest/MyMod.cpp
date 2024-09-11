@@ -186,3 +186,85 @@ LL_AUTO_TYPE_INSTANCE_HOOK(LoginPacketRead, HookPriority::Normal, LoginPacket,
   }
   return origin(stream);
 }
+
+#include "mc/network/packet/DisconnectPacket.h"
+#include "protocol/common/network/packet/DisconnectPacket.h"
+
+LL_AUTO_TYPE_INSTANCE_HOOK(DisconnectPacketWrite, HookPriority::Normal,
+                           DisconnectPacket,
+                           "?write@DisconnectPacket@@UEBAXAEAVBinaryStream@@@Z",
+                           void, BinaryStream &stream) {
+  origin(stream);
+  auto &logger = my_mod::MyMod::getInstance().getSelf().getLogger();
+  logger.warn("DisconnectPacket");
+  protocol::ReadOnlyBinaryStream newreadstream(*stream.mBuffer, false);
+  protocol::DisconnectPacket(pkt);
+  pkt.read(newreadstream);
+
+  protocol::BinaryStream(newstream);
+  pkt.writeWithHeader((protocol::SubClientId)mClientSubId, newstream);
+
+  auto out = newstream.getAndReleaseData();
+
+  if (out == *stream.mBuffer) {
+    logger.warn("DisconnectPacket Same");
+  } else {
+    logger.error("DisconnectPacket Not same {} {}", out.size(),
+                 stream.mBuffer->size());
+  }
+}
+
+#include "mc/network/packet/PlayStatusPacket.h"
+#include "protocol/common/network/packet/PlayStatusPacket.h"
+
+LL_AUTO_TYPE_INSTANCE_HOOK(PlayStatusPacketWrite, HookPriority::Normal,
+                           PlayStatusPacket,
+                           "?write@PlayStatusPacket@@UEBAXAEAVBinaryStream@@@Z",
+                           void, BinaryStream &stream) {
+  origin(stream);
+  auto &logger = my_mod::MyMod::getInstance().getSelf().getLogger();
+  logger.warn("PlayStatusPacket");
+  protocol::ReadOnlyBinaryStream newreadstream(*stream.mBuffer, false);
+  protocol::PlayStatusPacket(pkt);
+  pkt.read(newreadstream);
+
+  protocol::BinaryStream(newstream);
+  pkt.writeWithHeader((protocol::SubClientId)mClientSubId, newstream);
+
+  auto out = newstream.getAndReleaseData();
+
+  if (out == *stream.mBuffer) {
+    logger.warn("PlayStatusPacket Same");
+  } else {
+    logger.error("PlayStatusPacket Not same {} {}", out.size(),
+                 stream.mBuffer->size());
+  }
+}
+
+#include "mc/network/packet/ServerToClientHandshakePacket.h"
+#include "protocol/common/network/packet/ServerToClientHandshakePacket.h"
+
+LL_AUTO_TYPE_INSTANCE_HOOK(
+    ServerToClientHandshakePacketWrite, HookPriority::Normal,
+    ServerToClientHandshakePacket,
+    "?write@ServerToClientHandshakePacket@@UEBAXAEAVBinaryStream@@@Z", void,
+    BinaryStream &stream) {
+  origin(stream);
+  auto &logger = my_mod::MyMod::getInstance().getSelf().getLogger();
+  logger.warn("ServerToClientHandshakePacket");
+  protocol::ReadOnlyBinaryStream newreadstream(*stream.mBuffer, false);
+  protocol::ServerToClientHandshakePacket(pkt);
+  pkt.read(newreadstream);
+
+  protocol::BinaryStream(newstream);
+  pkt.writeWithHeader((protocol::SubClientId)mClientSubId, newstream);
+
+  auto out = newstream.getAndReleaseData();
+
+  if (out == *stream.mBuffer) {
+    logger.warn("ServerToClientHandshakePacket Same");
+  } else {
+    logger.error("ServerToClientHandshakePacket Not same {} {}", out.size(),
+                 stream.mBuffer->size());
+  }
+}
