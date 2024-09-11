@@ -2,7 +2,7 @@
 
 namespace protocol {
 
-bool StringByteInput::readBytes(void *data, uint64_t bytes) {
+bool StringByteInput::readBytes(void *data, uint64 bytes) {
   auto M_len = mBuffer.length();
   if (mIdx != M_len) {
     auto v6 = numBytesLeft();
@@ -14,7 +14,7 @@ bool StringByteInput::readBytes(void *data, uint64_t bytes) {
   return mIdx != M_len;
 };
 
-uint64_t StringByteInput::numBytesLeft() const {
+uint64 StringByteInput::numBytesLeft() const {
   return mBuffer.length() - mIdx;
 };
 

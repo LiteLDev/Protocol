@@ -22,7 +22,7 @@ public:
 
 public:
   PackInfoData(mce::UUID const &guid, SemVersion const &version,
-               uint64_t packSize, std::string const &contentKey,
+               uint64 packSize, std::string const &contentKey,
                std::string const &subpackName,
                ContentIdentity const &contentIdentity, bool hasScripts,
                bool isRayTracingCapable);

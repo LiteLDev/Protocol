@@ -6,11 +6,13 @@ namespace protocol {
 ContentIdentity::ContentIdentity() : uuid(mce::UUID()), valid(false){};
 
 ContentIdentity::ContentIdentity(ContentIdentity &&other) {
-  *this = std::move(other);
+  uuid = std::move(other.uuid);
+  valid = other.valid;
 };
 
 ContentIdentity::ContentIdentity(ContentIdentity const &other) {
-  *this = other;
+  uuid = other.uuid;
+  valid = other.valid;
 };
 
 ContentIdentity::ContentIdentity(mce::UUID const &uuid)
@@ -30,12 +32,18 @@ bool ContentIdentity::operator!=(ContentIdentity const &rhs) const {
 };
 
 ContentIdentity &ContentIdentity::operator=(ContentIdentity &&rhs) {
-  *this = std::move(rhs);
+  if (this != &rhs) {
+    uuid = std::move(rhs.uuid);
+    valid = rhs.valid;
+  }
   return *this;
 };
 
 ContentIdentity &ContentIdentity::operator=(ContentIdentity const &rhs) {
-  *this = rhs;
+  if (this != &rhs) {
+    uuid = rhs.uuid;
+    valid = rhs.valid;
+  }
   return *this;
 };
 

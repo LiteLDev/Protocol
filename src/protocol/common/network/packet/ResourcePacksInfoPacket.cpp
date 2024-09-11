@@ -3,7 +3,7 @@
 
 namespace protocol {
 PackInfoData::PackInfoData(mce::UUID const &guid, SemVersion const &version,
-                           uint64_t packSize, std::string const &contentKey,
+                           uint64 packSize, std::string const &contentKey,
                            std::string const &subpackName,
                            ContentIdentity const &contentIdentity,
                            bool hasScripts, bool isRayTracingCapable)
@@ -104,7 +104,7 @@ StreamReadResult ResourcePacksInfoPacket::_read(ReadOnlyBinaryStream &stream) {
   auto resourcePackSize = stream.getUnsignedShort();
   for (uint64 i = 0; i < resourcePackSize; i++) {
     auto id = mce::UUID::fromString(stream.getString());
-    SemVersion(packVersion);
+    auto packVersion = SemVersion();
     SemVersion::fromString(stream.getString(), packVersion,
                            SemVersion::ParseOption::NoWildcards);
     auto packSize = stream.getUnsignedInt64();

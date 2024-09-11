@@ -14,6 +14,6 @@ public:
 
 public:
   virtual ~StringByteOutput() = default;
-  virtual void writeBytes(void const *data, uint64_t bytes);
+  virtual void writeBytes(void const *data, uint64 bytes);
 };
 } // namespace protocol

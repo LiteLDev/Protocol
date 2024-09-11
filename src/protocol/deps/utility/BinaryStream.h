@@ -17,44 +17,44 @@ public:
   ReadOnlyBinaryStream(std::string const &buffer, bool copyBuffer);
 
   virtual ~ReadOnlyBinaryStream();
-  virtual bool read(void *target, uint64_t num);
+  virtual bool read(void *target, uint64 num);
 
   template <typename T> bool read(T *target) { return read(target, sizeof(T)); }
 
   bool canReadBool() const;
   void ensureReadCompleted() const;
   bool getBool();
-  uint8_t getByte();
+  uint8 getByte();
   double getDouble();
   float getFloat();
-  int32_t getSignedBigEndianInt();
-  int32_t getSignedInt();
-  int64_t getSignedInt64();
-  int16_t getSignedShort();
-  std::string getString(uint64_t = 0);
-  void getString(std::string &, uint64_t = 0);
-  uint8_t getUnsignedChar();
-  uint32_t getUnsignedInt();
-  uint64_t getUnsignedInt64();
-  uint16_t getUnsignedShort();
-  uint32_t getUnsignedVarInt();
-  uint64_t getUnsignedVarInt64();
-  int32_t getVarInt();
-  int64_t getVarInt64();
+  int32 getSignedBigEndianInt();
+  int32 getSignedInt();
+  int64 getSignedInt64();
+  int16 getSignedShort();
+  std::string getString(uint64 = 0);
+  void getString(std::string &, uint64 = 0);
+  uint8 getUnsignedChar();
+  uint32 getUnsignedInt();
+  uint64 getUnsignedInt64();
+  uint16 getUnsignedShort();
+  uint32 getUnsignedVarInt();
+  uint64 getUnsignedVarInt64();
+  int32 getVarInt();
+  int64 getVarInt64();
   bool hasOverflowed() const;
   StreamReadResult getReadCompleteResult();
 
   size_t getLength() const;
   void setReadPointer(size_t pos);
 
-  void readVectorList(std::vector<uint32_t> &);
+  void readVectorList(std::vector<uint32> &);
 };
 
 class BinaryStream : public ReadOnlyBinaryStream {
+public:
   std::string mOwnedBuffer;
   std::string *mBuffer;
 
-public:
   BinaryStream();
   BinaryStream(std::string &buffer, bool copyBuffer);
 
@@ -62,34 +62,34 @@ public:
 
   void reset();
   void writeBool(bool data);
-  void writeByte(uint8_t data);
+  void writeByte(uint8 data);
   void writeDouble(double data);
   void writeFloat(float data);
-  void writeSignedBigEndianInt(int32_t data);
-  void writeSignedInt(int32_t data);
-  void writeSignedInt64(int64_t data);
-  void writeSignedShort(int16_t data);
+  void writeSignedBigEndianInt(int32 data);
+  void writeSignedInt(int32 data);
+  void writeSignedInt64(int64 data);
+  void writeSignedShort(int16 data);
   void writeString(std::string_view data);
-  void writeUnsignedChar(uint8_t data);
-  void writeUnsignedInt(uint32_t data);
-  void writeUnsignedInt64(uint64_t data);
-  void writeUnsignedShort(uint16_t data);
-  void writeUnsignedVarInt(uint32_t data);
-  void writeUnsignedVarInt64(uint64_t data);
-  void writeVarInt(int32_t data);
-  void writeVarInt64(int64_t data);
+  void writeUnsignedChar(uint8 data);
+  void writeUnsignedInt(uint32 data);
+  void writeUnsignedInt64(uint64 data);
+  void writeUnsignedShort(uint16 data);
+  void writeUnsignedVarInt(uint32 data);
+  void writeUnsignedVarInt64(uint64 data);
+  void writeVarInt(int32 data);
+  void writeVarInt64(int64 data);
 
 private:
-  void _writeInteger(int32_t);
-  void _writeInteger(int16_t);
-  void _writeInteger(int8_t);
-  void _writeInteger(uint32_t);
-  void _writeInteger(uint16_t);
+  void _writeInteger(int32);
+  void _writeInteger(int16);
+  void _writeInteger(int8);
+  void _writeInteger(uint32);
+  void _writeInteger(uint16);
 
 public:
-  void write(void const *origin, uint64_t num);
+  void write(void const *origin, uint64 num);
   template <typename T> void write(T value) {
-    write((uint8_t *)&value, sizeof(T));
+    write((uint8 *)&value, sizeof(T));
   }
 
   std::string getAndReleaseData();

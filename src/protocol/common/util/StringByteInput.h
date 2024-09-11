@@ -13,7 +13,7 @@ public:
 
 public:
   virtual ~StringByteInput() = default;
-  virtual bool readBytes(void *, uint64_t);
-  virtual uint64_t numBytesLeft() const;
+  virtual bool readBytes(void *, uint64);
+  virtual uint64 numBytesLeft() const;
 };
 } // namespace protocol

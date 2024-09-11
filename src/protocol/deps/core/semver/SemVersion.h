@@ -7,13 +7,13 @@ class SemVersion {
 public:
   struct any_version_constructor;
 
-  enum class MatchType : int {
+  enum class MatchType : int32 {
     Full = 0x0,
     Partial = 0x1,
     None = 0x2,
   };
 
-  enum class ParseOption : int {
+  enum class ParseOption : int32 {
     AllowWildcards = 0x0,
     NoWildcards = 0x1,
   };
@@ -31,8 +31,8 @@ public:
 
 public:
   SemVersion();
-  SemVersion(class SemVersion const &);
-  explicit SemVersion(struct SemVersion::any_version_constructor);
+  SemVersion(SemVersion const &);
+  explicit SemVersion(SemVersion::any_version_constructor);
   SemVersion(ushort major, ushort minor, ushort patch,
              std::string const &preRelease, std::string const &buildMeta);
 
@@ -61,7 +61,7 @@ public:
   static SemVersion::MatchType fromString(std::string const &src,
                                           class SemVersion &output,
                                           SemVersion::ParseOption parseOption);
-  static struct any_version_constructor const AnyVersionConstructor;
+  static any_version_constructor const AnyVersionConstructor;
   void _parseVersionToString();
 };
 } // namespace protocol

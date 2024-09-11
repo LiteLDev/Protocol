@@ -4,7 +4,7 @@ namespace protocol {
 LoginPacket::LoginPacket()
     : Packet(), mClientNetworkVersion(0), mConnectionRequest() {}
 
-LoginPacket::LoginPacket(int clientNetworkVersion,
+LoginPacket::LoginPacket(int32 clientNetworkVersion,
                          ConnectionRequest const &connectionRequest)
     : mClientNetworkVersion(clientNetworkVersion) {
   mConnectionRequest = std::make_unique<ConnectionRequest>(connectionRequest);

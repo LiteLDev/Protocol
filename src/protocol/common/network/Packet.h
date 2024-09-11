@@ -36,7 +36,7 @@ public:
   virtual ~Packet();
   virtual MinecraftPacketIds getId() const = 0;
   virtual std::string getName() const = 0;
-  virtual bool checkSize(uint64_t, bool) const;
+  virtual bool checkSize(uint64, bool) const;
   virtual void write(class BinaryStream &stream) const = 0;
   virtual ExtendedStreamReadResult read(ReadOnlyBinaryStream &bitStream);
   virtual bool disallowBatching() const;

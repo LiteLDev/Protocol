@@ -1,10 +1,11 @@
 #pragma once
+#include "protocol/deps/StdInt.h"
 
 namespace protocol {
 
 namespace Connection {
 
-enum class DisconnectFailReason : int {
+enum class DisconnectFailReason : int32 {
   Unknown = 0x0,
   CantConnectNoInternet = 0x1,
   NoPermissions = 0x2,

@@ -12,7 +12,7 @@ template <class T> constexpr void hashCombine(T const &v, size_t &seed) {
   // hash_64_fnv1a
   uint64 hash = 0xcbf29ce484222325;
   constexpr uint64 prime = 0x100000001b3;
-  for (char c : x) {
+  for (int8 c : x) {
     hash ^= c;
     hash *= prime;
   }
@@ -30,7 +30,7 @@ template <class T> constexpr void hashCombine(T const &v, size_t &seed) {
 
 [[nodiscard]] constexpr uint64 doHash3(std::string_view x) {
   uint64 rval = 5381;
-  for (char c : x) {
+  for (int8 c : x) {
     rval = ((rval << 5) + rval) + c;
   }
   return rval;

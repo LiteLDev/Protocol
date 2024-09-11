@@ -42,15 +42,15 @@ class mce::UUID mce::UUID::fromString(std::string const &in) {
     return UUID();
   }
 
-  uint64_t mostSignificantBits = 0;
-  uint64_t leastSignificantBits = 0;
-  int count = 0;
+  uint64 mostSignificantBits = 0;
+  uint64 leastSignificantBits = 0;
+  int32 count = 0;
 
-  for (char c : in) {
+  for (int8 c : in) {
     if (c == '-')
       continue;
 
-    int value;
+    int32 value;
     if (c >= '0' && c <= '9') {
       value = c - '0';
     } else if (c >= 'a' && c <= 'f') {

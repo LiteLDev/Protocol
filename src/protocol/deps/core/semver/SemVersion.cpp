@@ -6,13 +6,13 @@ SemVersion::SemVersion()
     : mMajor(0), mMinor(0), mPatch(0), mPreRelease(""), mBuildMeta(""),
       mFullVersionString(""), mValidVersion(false), mAnyVersion(false){};
 
-SemVersion::SemVersion(class SemVersion const &other)
+SemVersion::SemVersion(SemVersion const &other)
     : mPatch(other.mPatch), mPreRelease(other.mPreRelease),
       mBuildMeta(other.mBuildMeta),
       mFullVersionString(other.mFullVersionString),
       mValidVersion(other.mValidVersion), mAnyVersion(other.mAnyVersion){};
 
-SemVersion::SemVersion(struct SemVersion::any_version_constructor)
+SemVersion::SemVersion(SemVersion::any_version_constructor)
     : mMajor(0), mMinor(0), mPatch(0), mPreRelease(""), mBuildMeta(""),
       mFullVersionString("*"), mValidVersion(true), mAnyVersion(true){};
 
@@ -44,7 +44,7 @@ bool SemVersion::operator!=(SemVersion const &rhs) const {
 };
 
 void _versionSplit(std::vector<std::string> &result, const std::string &str,
-                   char delimiter) {
+                   int8 delimiter) {
   size_t start = 0;
   size_t end = str.find(delimiter);
   while (end != std::string::npos) {
@@ -95,8 +95,8 @@ bool SemVersion::operator<(SemVersion const &rhs) const {
       bool rhsIsIntegral = std::all_of(rhsId.begin(), rhsId.end(), ::isdigit);
 
       if (thisIsIntegral && rhsIsIntegral) {
-        int thisNum = std::stoi(thisId);
-        int rhsNum = std::stoi(rhsId);
+        int32 thisNum = std::stoi(thisId);
+        int32 rhsNum = std::stoi(rhsId);
         if (thisNum != rhsNum) {
           return thisNum < rhsNum;
         }
@@ -118,12 +118,13 @@ bool SemVersion::operator<=(SemVersion const &rhs) const {
 };
 
 SemVersion &SemVersion::operator=(SemVersion const &rhs) {
-  this->mMajor = rhs.mMajor;
-  this->mPatch = rhs.mPatch;
-  this->mPreRelease = rhs.mPreRelease;
-  this->mBuildMeta = rhs.mBuildMeta;
-  this->mFullVersionString = rhs.mFullVersionString;
-  this->mValidVersion = rhs.mValidVersion;
+  mMajor = rhs.mMajor;
+  mPatch = rhs.mPatch;
+  mPreRelease = rhs.mPreRelease;
+  mBuildMeta = rhs.mBuildMeta;
+  mFullVersionString = rhs.mFullVersionString;
+  mValidVersion = rhs.mValidVersion;
+  mAnyVersion = rhs.mAnyVersion;
   return *this;
 };
 
@@ -205,7 +206,7 @@ SemVersion::fromString(std::string const &src, SemVersion &output,
   static const std::regex SemVerRegex(SemVerRegexStr);
 
   if (src == "*") {
-    output = SemVersion(); // Assuming a constructor that sets to "any version"
+    output = SemVersion(SemVersion::AnyVersionConstructor);
     if (parseOption == SemVersion::ParseOption::NoWildcards) {
       output.mValidVersion = false;
       return SemVersion::MatchType::None;
@@ -230,9 +231,7 @@ SemVersion::fromString(std::string const &src, SemVersion &output,
   }
 };
 
-SemVersion::any_version_constructor const AnyVersionConstructor{
-
-};
+SemVersion::any_version_constructor const AnyVersionConstructor = {};
 
 void SemVersion::_parseVersionToString() {
   std::ostringstream oss;

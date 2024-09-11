@@ -7,7 +7,7 @@
 namespace protocol {
 class LoginPacket : public Packet {
 public:
-  int mClientNetworkVersion;
+  int32 mClientNetworkVersion;
   std::unique_ptr<ConnectionRequest> mConnectionRequest;
 
   virtual ~LoginPacket() = default;
@@ -18,7 +18,7 @@ public:
   virtual StreamReadResult _read(class ReadOnlyBinaryStream &stream);
 
   LoginPacket();
-  LoginPacket(int clientNetworkVersion,
+  LoginPacket(int32 clientNetworkVersion,
               ConnectionRequest const &connectionRequest);
 };
 } // namespace protocol

@@ -5,12 +5,12 @@ namespace protocol::Utils {
 
 namespace detail {
 
-constexpr uint8_t encode_lookup(uint8_t c) {
+constexpr uint8 encode_lookup(uint8 c) {
   return "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
          "abcdefghijklmnopqrstuvwxyz"
          "0123456789+/"[c];
 }
-constexpr uint8_t decode_lookup(uint8_t c) {
+constexpr uint8 decode_lookup(uint8 c) {
   if (c >= 'A' && c <= 'Z')
     return c - 'A';
   if (c >= 'a' && c <= 'z')
@@ -26,7 +26,7 @@ constexpr uint8_t decode_lookup(uint8_t c) {
 } // namespace detail
 
 constexpr size_t get_decode_length(std::string_view in) {
-  uint8_t count = 0;
+  uint8 count = 0;
   size_t input_size = in.size();
   for (auto it = in.rbegin(); *it == '='; ++it) {
     ++count;
@@ -47,20 +47,20 @@ inline std::string base64_decode(std::string const &str) {
   std::string out;
   out.resize(output_size);
   for (size_t i = 0, j = 0; i < input_size;) {
-    uint32_t c1 = (i > input_size || str[i] == '=')
+    uint32 c1 = (i > input_size || str[i] == '=')
                       ? 0 & i++
                       : detail::decode_lookup(str[i++]);
-    uint32_t c2 = (i > input_size || str[i] == '=')
+    uint32 c2 = (i > input_size || str[i] == '=')
                       ? 0 & i++
                       : detail::decode_lookup(str[i++]);
-    uint32_t c3 = (i > input_size || str[i] == '=')
+    uint32 c3 = (i > input_size || str[i] == '=')
                       ? 0 & i++
                       : detail::decode_lookup(str[i++]);
-    uint32_t c4 = (i > input_size || str[i] == '=')
+    uint32 c4 = (i > input_size || str[i] == '=')
                       ? 0 & i++
                       : detail::decode_lookup(str[i++]);
 
-    uint32_t data =
+    uint32 data =
         (c1 << 3 * 6) + (c2 << 2 * 6) + (c3 << 1 * 6) + (c4 << 0 * 6);
 
     if (j < output_size)

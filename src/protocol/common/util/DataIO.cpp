@@ -12,10 +12,10 @@ void BytesDataOutput::writeLongString(std::string_view v) {
 };
 void BytesDataOutput::writeFloat(float v) { writeBytes(&v, 4); };
 void BytesDataOutput::writeDouble(double v) { writeBytes(&v, 8); };
-void BytesDataOutput::writeByte(char v) { writeBytes(&v, 1); };
-void BytesDataOutput::writeShort(short v) { writeBytes(&v, 2); };
-void BytesDataOutput::writeInt(int v) { writeBytes(&v, 4); };
-void BytesDataOutput::writeLongLong(int64_t v) { writeBytes(&v, 8); };
+void BytesDataOutput::writeByte(int8 v) { writeBytes(&v, 1); };
+void BytesDataOutput::writeShort(int16 v) { writeBytes(&v, 2); };
+void BytesDataOutput::writeInt(int32 v) { writeBytes(&v, 4); };
+void BytesDataOutput::writeLongLong(int64 v) { writeBytes(&v, 8); };
 
 std::string BytesDataInput::readString() {
   auto len = readShort();
@@ -51,26 +51,26 @@ double BytesDataInput::readDouble() {
   return result;
 };
 
-uint8_t BytesDataInput::readByte() {
-  uint8_t result;
+uint8 BytesDataInput::readByte() {
+  uint8 result;
   readBytes(&result, 1);
   return result;
 };
 
-short BytesDataInput::readShort() {
-  short result;
+int16 BytesDataInput::readShort() {
+  int16 result;
   readBytes(&result, 2);
   return result;
 };
 
-int BytesDataInput::readInt() {
-  int result;
+int32 BytesDataInput::readInt() {
+  int32 result;
   readBytes(&result, 4);
   return result;
 };
 
-int64_t BytesDataInput::readLongLong() {
-  int64_t result;
+int64 BytesDataInput::readLongLong() {
+  int64 result;
   readBytes(&result, 8);
   return result;
 };

@@ -3,7 +3,7 @@
 namespace protocol {
 
 Packet::~Packet() = default;
-bool Packet::checkSize(uint64_t a1, bool a2) const {
+bool Packet::checkSize(uint64 a1, bool a2) const {
   if (a1 >= 0xA00001 && a2) {
     return false;
   } else {

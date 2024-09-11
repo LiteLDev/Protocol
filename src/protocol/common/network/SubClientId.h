@@ -1,7 +1,8 @@
 #pragma once
+#include "protocol/deps/StdInt.h"
 
 namespace protocol {
-enum class SubClientId : unsigned char {
+enum class SubClientId : uint8 {
   PrimaryClient = 0x0,
   Client2 = 0x1,
   Client3 = 0x2,

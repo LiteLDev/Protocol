@@ -1,6 +1,8 @@
 #pragma once
+#include "protocol/deps/StdInt.h"
+
 namespace protocol {
-enum class LogAreaID : int {
+enum class LogAreaID : int32 {
   All = 0x0,
   Platform = 0x1,
   Entity = 0x2,

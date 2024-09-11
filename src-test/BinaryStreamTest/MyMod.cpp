@@ -268,3 +268,57 @@ LL_AUTO_TYPE_INSTANCE_HOOK(
                  stream.mBuffer->size());
   }
 }
+
+#include "mc/network/packet/ResourcePacksInfoPacket.h"
+#include "protocol/common/network/packet/ResourcePacksInfoPacket.h"
+
+LL_AUTO_TYPE_INSTANCE_HOOK(
+    ResourcePacksInfoPacketWrite, HookPriority::Normal, ResourcePacksInfoPacket,
+    "?write@ResourcePacksInfoPacket@@UEBAXAEAVBinaryStream@@@Z", void,
+    BinaryStream &stream) {
+  origin(stream);
+  auto &logger = my_mod::MyMod::getInstance().getSelf().getLogger();
+  logger.warn("ResourcePacksInfoPacket");
+  protocol::ReadOnlyBinaryStream newreadstream(*stream.mBuffer, false);
+  protocol::ResourcePacksInfoPacket(pkt);
+  pkt.read(newreadstream);
+
+  protocol::BinaryStream(newstream);
+  pkt.writeWithHeader((protocol::SubClientId)mClientSubId, newstream);
+
+  auto out = newstream.getAndReleaseData();
+
+  if (out == *stream.mBuffer) {
+    logger.warn("ResourcePacksInfoPacket Same");
+  } else {
+    logger.error("ResourcePacksInfoPacket Not same {} {}", out.size(),
+                 stream.mBuffer->size());
+  }
+}
+
+#include "mc/network/packet/ResourcePackStackPacket.h"
+#include "protocol/common/network/packet/ResourcePackStackPacket.h"
+
+LL_AUTO_TYPE_INSTANCE_HOOK(
+    ResourcePackStackPacketWrite, HookPriority::Normal, ResourcePacksInfoPacket,
+    "?write@ResourcePackStackPacket@@UEBAXAEAVBinaryStream@@@Z", void,
+    BinaryStream &stream) {
+  origin(stream);
+  auto &logger = my_mod::MyMod::getInstance().getSelf().getLogger();
+  logger.warn("ResourcePackStackPacket");
+  protocol::ReadOnlyBinaryStream newreadstream(*stream.mBuffer, false);
+  protocol::ResourcePackStackPacket(pkt);
+  pkt.read(newreadstream);
+
+  protocol::BinaryStream(newstream);
+  pkt.writeWithHeader((protocol::SubClientId)mClientSubId, newstream);
+
+  auto out = newstream.getAndReleaseData();
+
+  if (out == *stream.mBuffer) {
+    logger.warn("ResourcePackStackPacket Same");
+  } else {
+    logger.error("ResourcePackStackPacket Not same {} {}", out.size(),
+                 stream.mBuffer->size());
+  }
+}

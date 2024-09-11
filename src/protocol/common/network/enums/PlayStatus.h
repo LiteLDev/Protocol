@@ -1,7 +1,8 @@
 #pragma once
+#include "protocol/deps/StdInt.h"
 
 namespace protocol {
-enum class PlayStatus : int {
+enum class PlayStatus : int32 {
   LoginSuccess = 0x0,
   LoginFailed_ClientOld = 0x1,
   LoginFailed_ServerOld = 0x2,
