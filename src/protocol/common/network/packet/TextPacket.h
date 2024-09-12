@@ -39,45 +39,34 @@ public:
                                        std::string const &message,
                                        std::string const &xuid,
                                        std::string const &platformId);
-
   static TextPacket createChat(std::string const &, std::string const &,
                                std::optional<std::string>, std::string const &,
                                std::string const &);
-
   static TextPacket createJukeboxPopup(std::string const &message,
                                        std::vector<std::string> const &params);
-
   static TextPacket createRawJsonObjectMessage(std::string const &rawJson);
-
   static TextPacket createSystemMessage(std::string const &message);
-
   static TextPacket
   createTextObjectMessage(ResolvedTextObject const &resolvedTextObject,
                           std::string fromXuid, std::string fromPlatformId);
-
   static TextPacket
   createTextObjectWhisperMessage(ResolvedTextObject const &resolvedTextObject,
                                  std::string const &xuid,
                                  std::string const &platformId);
-
   static TextPacket
   createTextObjectWhisperMessage(std::string const &message,
                                  std::string const &xuid,
                                  std::string const &platformId);
-
   static TextPacket createTranslated(std::string const &message,
                                      std::vector<std::string> const &params);
-
   static TextPacket createTranslatedAnnouncement(std::string const &author,
                                                  std::string const &message,
                                                  std::string const &xuid,
                                                  std::string const &platformId);
-
   static TextPacket createWhisper(std::string const &author,
                                   std::string const &message,
                                   std::string const &xuid,
                                   std::string const &platformId);
-
   TextPacket(TextPacketType, std::string const &, std::string const &,
              std::optional<std::string>, std::vector<std::string> const &, bool,
              std::string const &, std::string const &);

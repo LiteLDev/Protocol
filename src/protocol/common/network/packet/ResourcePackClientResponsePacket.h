@@ -18,7 +18,7 @@ public:
   virtual StreamReadResult _read(class ReadOnlyBinaryStream &stream);
 
   ResourcePackClientResponsePacket();
-  ResourcePackClientResponsePacket(ResourcePackResponse response);
+  explicit ResourcePackClientResponsePacket(ResourcePackResponse response);
 
   std::set<std::string> const &getDownloadingPacks() const;
   bool isResponse(ResourcePackResponse haveThis) const;

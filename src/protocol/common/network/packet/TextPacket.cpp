@@ -169,8 +169,9 @@ TextPacket::TextPacket(TextPacketType type, std::string const &author,
                        std::optional<std::string> filteredMessage,
                        std::vector<std::string> const &params, bool localize,
                        std::string const &xuid, std::string const &platformId)
-    : mType(type), mAuthor(author), mMessage(message), mParams(params),
-      mLocalize(localize), mXuid(xuid), mPlatformId(platformId) {
+    : Packet(), mType(type), mAuthor(author), mMessage(message),
+      mParams(params), mLocalize(localize), mXuid(xuid),
+      mPlatformId(platformId) {
   mHasFilteredMessage = false;
   if (filteredMessage) {
     mHasFilteredMessage = true;
