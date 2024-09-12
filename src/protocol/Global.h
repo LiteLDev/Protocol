@@ -55,7 +55,16 @@
 #include <variant>       // STL variant type
 #include <vector>        // STL dynamic array container
 
-#include "deps/StdInt.h"
+#include "protocol/deps/base/StdInt.h"
+
+#ifdef _MSC_VER
+#pragma warning(push)
+#pragma warning(disable : 4702)
+#endif
+#include "nonstd/expected.hpp"
+#ifdef _MSC_VER
+#pragma warning(pop)
+#endif
 
 #include "magic_enum.hpp"
 #include "json/json.h"

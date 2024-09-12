@@ -1,6 +1,7 @@
 #pragma once
 #include "protocol/Global.h"
 #include "protocol/deps/Common/Bedrock/ErrorInfo.h"
+#include <system_error>
 
 #pragma warning(push)
 #pragma warning(disable : 4702)
@@ -15,5 +16,14 @@ public:
   using Base = nonstd::expected<T, ErrorInfo<Err>>;
   using Base::Base;
 };
+
+namespace Detail {
+template <typename E = std::error_code>
+static Bedrock::ErrorInfo<E> createError(std::errc error) {
+  Bedrock::ErrorInfo<E> info;
+  info.mError = std::make_error_code(error);
+  return info;
+}
+} // namespace Detail
 }; // namespace Bedrock
 } // namespace protocol

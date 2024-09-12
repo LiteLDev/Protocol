@@ -216,7 +216,7 @@ SemVersion::fromString(std::string const &src, SemVersion &output,
 
   std::smatch results;
   if (std::regex_search(src, results, SemVerRegex) &&
-      results.length(0) == src.length()) {
+      results.length(0) ==  src.length()) {
     output.mMajor = std::stoi(results[1].str());
     output.mMinor = results[3].matched ? std::stoi(results[3].str()) : 0;
     output.mPatch = results[5].matched ? std::stoi(results[5].str()) : 0;

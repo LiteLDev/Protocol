@@ -19,4 +19,5 @@ public:
 };
 
 }; // namespace Bedrock
+
 } // namespace protocol

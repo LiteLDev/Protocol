@@ -18,11 +18,8 @@ struct CallStack {
     std::optional<::protocol::LogAreaID> mLogAreaID;
 
   public:
-    // NOLINTBEGIN
     Context(std::string value, std::optional<::protocol::Bedrock::LogLevel>,
             std::optional<::protocol::LogAreaID> logArea);
-
-    // NOLINTEND
   };
 
   struct Frame {

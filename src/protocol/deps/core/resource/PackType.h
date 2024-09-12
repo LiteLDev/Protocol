@@ -1,5 +1,5 @@
 #pragma once
-#include "protocol/deps/StdInt.h"
+#include "protocol/deps/base/StdInt.h"
 
 namespace protocol {
 enum class PackType : schar {

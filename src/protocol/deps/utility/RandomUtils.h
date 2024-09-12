@@ -9,7 +9,7 @@
 #include "pcg_cpp/pcg_extras.hpp"
 #include "pcg_cpp/pcg_random.hpp"
 
-#include "protocol/deps/StdInt.h"
+#include "protocol/deps/base/StdInt.h"
 
 namespace ll::inline utils::random_utils {
 

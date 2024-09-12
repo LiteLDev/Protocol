@@ -159,7 +159,7 @@ LL_REGISTER_MOD(my_mod::MyMod, my_mod::instance);
 
 #include "ll/api/memory/Hook.h"
 #include "mc/network/packet/LoginPacket.h"
-#include "protocol/common/network/packet/LoginPacket.h"
+#include "protocol/network/packet/LoginPacket.h"
 
 LL_AUTO_TYPE_INSTANCE_HOOK(LoginPacketRead, HookPriority::Normal, LoginPacket,
                            "?_read@LoginPacket@@EEAA?AV?$Result@XVerror_code@"
@@ -188,7 +188,7 @@ LL_AUTO_TYPE_INSTANCE_HOOK(LoginPacketRead, HookPriority::Normal, LoginPacket,
 }
 
 #include "mc/network/packet/DisconnectPacket.h"
-#include "protocol/common/network/packet/DisconnectPacket.h"
+#include "protocol/network/packet/DisconnectPacket.h"
 
 LL_AUTO_TYPE_INSTANCE_HOOK(DisconnectPacketWrite, HookPriority::Normal,
                            DisconnectPacket,
@@ -215,7 +215,7 @@ LL_AUTO_TYPE_INSTANCE_HOOK(DisconnectPacketWrite, HookPriority::Normal,
 }
 
 #include "mc/network/packet/PlayStatusPacket.h"
-#include "protocol/common/network/packet/PlayStatusPacket.h"
+#include "protocol/network/packet/PlayStatusPacket.h"
 
 LL_AUTO_TYPE_INSTANCE_HOOK(PlayStatusPacketWrite, HookPriority::Normal,
                            PlayStatusPacket,
@@ -242,7 +242,7 @@ LL_AUTO_TYPE_INSTANCE_HOOK(PlayStatusPacketWrite, HookPriority::Normal,
 }
 
 #include "mc/network/packet/ServerToClientHandshakePacket.h"
-#include "protocol/common/network/packet/ServerToClientHandshakePacket.h"
+#include "protocol/network/packet/ServerToClientHandshakePacket.h"
 
 LL_AUTO_TYPE_INSTANCE_HOOK(
     ServerToClientHandshakePacketWrite, HookPriority::Normal,
@@ -270,7 +270,7 @@ LL_AUTO_TYPE_INSTANCE_HOOK(
 }
 
 #include "mc/network/packet/ResourcePacksInfoPacket.h"
-#include "protocol/common/network/packet/ResourcePacksInfoPacket.h"
+#include "protocol/network/packet/ResourcePacksInfoPacket.h"
 
 LL_AUTO_TYPE_INSTANCE_HOOK(
     ResourcePacksInfoPacketWrite, HookPriority::Normal, ResourcePacksInfoPacket,
@@ -297,7 +297,7 @@ LL_AUTO_TYPE_INSTANCE_HOOK(
 }
 
 #include "mc/network/packet/ResourcePackStackPacket.h"
-#include "protocol/common/network/packet/ResourcePackStackPacket.h"
+#include "protocol/network/packet/ResourcePackStackPacket.h"
 
 LL_AUTO_TYPE_INSTANCE_HOOK(
     ResourcePackStackPacketWrite, HookPriority::Normal, ResourcePackStackPacket,
@@ -324,7 +324,7 @@ LL_AUTO_TYPE_INSTANCE_HOOK(
 }
 
 #include "mc/network/packet/TextPacket.h"
-#include "protocol/common/network/packet/TextPacket.h"
+#include "protocol/network/packet/TextPacket.h"
 
 LL_AUTO_TYPE_INSTANCE_HOOK(TextPacketWrite, HookPriority::Normal, TextPacket,
                            "?write@TextPacket@@UEBAXAEAVBinaryStream@@@Z", void,
