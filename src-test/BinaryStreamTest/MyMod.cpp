@@ -300,7 +300,7 @@ LL_AUTO_TYPE_INSTANCE_HOOK(
 #include "protocol/common/network/packet/ResourcePackStackPacket.h"
 
 LL_AUTO_TYPE_INSTANCE_HOOK(
-    ResourcePackStackPacketWrite, HookPriority::Normal, ResourcePacksInfoPacket,
+    ResourcePackStackPacketWrite, HookPriority::Normal, ResourcePackStackPacket,
     "?write@ResourcePackStackPacket@@UEBAXAEAVBinaryStream@@@Z", void,
     BinaryStream &stream) {
   origin(stream);
@@ -319,6 +319,32 @@ LL_AUTO_TYPE_INSTANCE_HOOK(
     logger.warn("ResourcePackStackPacket Same");
   } else {
     logger.error("ResourcePackStackPacket Not same {} {}", out.size(),
+                 stream.mBuffer->size());
+  }
+}
+
+#include "mc/network/packet/TextPacket.h"
+#include "protocol/common/network/packet/TextPacket.h"
+
+LL_AUTO_TYPE_INSTANCE_HOOK(TextPacketWrite, HookPriority::Normal, TextPacket,
+                           "?write@TextPacket@@UEBAXAEAVBinaryStream@@@Z", void,
+                           BinaryStream &stream) {
+  origin(stream);
+  auto &logger = my_mod::MyMod::getInstance().getSelf().getLogger();
+  logger.warn("TextPacket");
+  protocol::ReadOnlyBinaryStream newreadstream(*stream.mBuffer, false);
+  protocol::TextPacket(pkt);
+  pkt.read(newreadstream);
+
+  protocol::BinaryStream(newstream);
+  pkt.writeWithHeader((protocol::SubClientId)mClientSubId, newstream);
+
+  auto out = newstream.getAndReleaseData();
+
+  if (out == *stream.mBuffer) {
+    logger.warn("TextPacket Same");
+  } else {
+    logger.error("TextPacket Not same {} {}", out.size(),
                  stream.mBuffer->size());
   }
 }
