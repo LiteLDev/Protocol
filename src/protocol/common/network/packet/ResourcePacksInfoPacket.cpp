@@ -1,5 +1,4 @@
 #include "protocol/common/network/packet/ResourcePacksInfoPacket.h"
-#include <cstdint>
 
 namespace protocol {
 PackInfoData::PackInfoData(mce::UUID const &guid, SemVersion const &version,
